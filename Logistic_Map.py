@@ -28,10 +28,10 @@ def start_plot(r,x_0,num):
     ax.plot(xl, xl, 'k')
     cobweb(r,x_0,num,ax2)
     plt.subplots_adjust(bottom=0.2)
-    return fig,ax,ax2
+    return fig,ax,ax2,xl
 
 
-fig,ax,ax2 = start_plot(3.7,x_0,num)
+fig,ax,ax2,xl = start_plot(3.7,x_0,num)
 axfreq = plt.axes([0.2, 0.1, 0.65, 0.03])
 freq_slider = Slider(
     ax=axfreq,
@@ -43,7 +43,6 @@ freq_slider = Slider(
 
 def update(val):
     ax2.cla()
-    xl = np.linspace(0, 1)
     ax2.plot(xl, Logistic(freq_slider.val, xl), 'k')
     ax.plot(xl, xl, 'k')
     cobweb(freq_slider.val,x_0,num,ax2)
